@@ -202,6 +202,7 @@ function setupEventListeners() {
 
     const productsLink = document.getElementById('productsLink');
     if (productsLink) productsLink.addEventListener('click', (event) => {
+        // Prevent the default link behavior to prevent the page from reloading when the link is clicked
         event.preventDefault();
         loadProductContent();
     });
@@ -217,7 +218,7 @@ function loadProductContent() {
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
                     <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-                    <a href="#" class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
+                    <a  class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -243,6 +244,7 @@ function setupLoginForm() {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior to prevent the page from reloading when the form is submitted
             event.preventDefault();
             performLogin();
         });
