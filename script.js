@@ -435,7 +435,7 @@ function displayProducts(productsList) {
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
                     <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-                    <a href="#" class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
+                    <a class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
                 </div>
             </div>
         </div>
