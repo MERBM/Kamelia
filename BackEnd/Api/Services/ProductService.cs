@@ -46,6 +46,15 @@ namespace Api.Services
             _context.SaveChanges();
         }
     }
+     public void DeleteProducts()
+    {
+        var products = _context.Products.ToList();
+        if (products != null)
+        {
+            _context.Products.RemoveRange(products);
+            _context.SaveChanges();
+        }
+    }
 }
 
 }

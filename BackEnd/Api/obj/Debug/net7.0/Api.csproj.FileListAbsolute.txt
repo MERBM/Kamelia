@@ -74,3 +74,8 @@ C:\Users\pc\Desktop\kemo\BackEnd\Api\obj\Debug\net7.0\refint\Api.dll
 C:\Users\pc\Desktop\kemo\BackEnd\Api\obj\Debug\net7.0\Api.pdb
 C:\Users\pc\Desktop\kemo\BackEnd\Api\obj\Debug\net7.0\Api.genruntimeconfig.cache
 C:\Users\pc\Desktop\kemo\BackEnd\Api\obj\Debug\net7.0\ref\Api.dll
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\web.config
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\Api.deps.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\Api.runtimeconfig.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\appsettings.Development.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\appsettings.json

@@ -68,6 +68,14 @@ public class ProductsController : ControllerBase
         _productService.DeleteProduct(id);
         return NoContent();
     }
+
+    [HttpDelete]
+    public IActionResult DeleteAll(int id)
+    {
+        _productService.DeleteProducts();
+        return NoContent();
+    }
+
 }
 
 }
