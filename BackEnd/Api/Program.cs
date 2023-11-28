@@ -1,4 +1,6 @@
+using Api;
 using Api.Data;
+using Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +17,12 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 builder.Services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Kamelia")));
-var app = builder.Build();
+builder.Services.AddScoped<CategoryService>(); 
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<UserService>();
 
+var app = builder.Build();
+app.UseExceptionMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -29,5 +35,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+// Seeding Data
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<MyDBContext>();
+    DataSeeder.SeedData(dbContext);
+}
 app.Run();
