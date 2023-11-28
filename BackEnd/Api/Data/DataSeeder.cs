@@ -26,7 +26,7 @@ namespace Api.Data
                 new Category { Name = "BATHROOM MAT", Description = "Soft and absorbent mats for bathrooms." },
                 new Category { Name = "MAC COLLECTION", Description = "Exclusive Mac Collection rugs." },
                 new Category { Name = "ROUND AREA RUG", Description = "Stylish round area rugs." },
-                new Category { Name = "GOBELIN TABLEAU", Description = "Artistic gobelin tableau rugs." }
+                new Category { Name = "GOBELIN TABLEAU", Description = "Artistic gobelin tableau rugs." },
                 new Category { Name = "GEO COLLECTION", Description = "Geometrically inspired rugs with modern patterns." },
                 new Category { Name = "CLASSIC", Description = "Timeless and traditional rug designs." },
                 new Category { Name = "MODERN", Description = "Contemporary rugs for modern interiors." },
