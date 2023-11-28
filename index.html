@@ -10,14 +10,14 @@
 <body>
     <!-- Content will go here -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Main Page</a>
+        <a class="navbar-brand mx-2" href="#"> Main Page</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             
-            <li class="nav-item active">
+            <li class="nav-item active ">
                 <a class="nav-link" id="productsLink" href="#">Products</a>
             </li>
             <div class="d-flex justify-content-end w-100">
@@ -47,8 +47,9 @@
                 <div class="modal-body" id="cartItems">
                 <!-- Cart items will be added here -->
                 </div>
-                <h5>Enter Your Details</h5>
                 <!-- Inside your Cart Modal, in the user details section -->
+                <div class="container">
+                    <h5>Enter Your Details</h5>
                 <div class="form-group">
                     <label for="userName">Name:</label>
                     <input type="text" class="form-control" id="userName" required>
@@ -64,6 +65,7 @@
                 <div class="form-group">
                     <label for="userPhone">Phone Number:</label>
                     <input type="tel" class="form-control" id="userPhone" required>
+                </div>
                 </div>
                 <div class="modal-footer">
 
@@ -83,7 +85,7 @@
                 <div class="col-md-2 bg-light" id="sidebar">
                     <ul class="nav flex-column">
                         <li class="nav-item" onclick="filterProductsByCategory('GEO COLLECTION')">
-                            <a class="nav-link" href="#">GEO COLLECTION</a>
+                            <a class="nav-link" href="#" >GEO COLLECTION</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('CLASSIC')">
                             <a class="nav-link" href="#">CLASSIC</a>
@@ -95,19 +97,19 @@
                             <a class="nav-link" href="#">INDOOR-OUTDOOR</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('KIDS RUGS')">
-                            <a class="nav-link" href="#">KIDS RUGS</a>
+                            <a class="nav-link"href="#" >KIDS RUGS</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('HAND TUFT')">
                             <a class="nav-link" href="#">HAND TUFT</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('SHAG')">
-                            <a class="nav-link" href="#">SHAG</a>
+                            <a class="nav-link"href="#">SHAG</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('GOBELIN')">
                             <a class="nav-link" href="#">GOBELIN</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('BATHROOM MAT')">
-                            <a class="nav-link" href="#">BATHROOM MAT</a>
+                            <a class="nav-link"href="#">BATHROOM MAT</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('GOBELIN TABLEAU')">
                             <a class="nav-link" href="#">GOBELIN TABLEAU</a>
@@ -116,7 +118,7 @@
                             <a class="nav-link" href="#">MAC COLLECTION</a>
                         </li>
                         <li class="nav-item" onclick="filterProductsByCategory('ROUND AREA RUG')">
-                            <a class="nav-link" href="#">ROUND AREA RUG</a>
+                            <a class="nav-link"href="#" >ROUND AREA RUG</a>
                         </li>
                         <!-- Add any additional categories here -->
                     </ul>
@@ -148,7 +150,6 @@
                     <div id="dynamic-content">
                         <div class="container mt-5">
                             
-                            <h2 class="mb-4">Our Products</h2>
                             <div class="row" id="productsContainer">
                                 <!-- Products will be loaded here -->
                             </div>

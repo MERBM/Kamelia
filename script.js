@@ -195,10 +195,10 @@ const products = [
 
 function setupEventListeners() {
     const loginButton = document.getElementById('loginButton');
-    if (loginButton) loginButton.addEventListener('click', () => loadContent('./login.html'));
+    if (loginButton) loginButton.addEventListener('click', () => loadLoginContent());
 
     const signupButton = document.getElementById('signupButton');
-    if (signupButton) signupButton.addEventListener('click', () => loadContent('./signup.html'));
+    if (signupButton) signupButton.addEventListener('click', () => loadSignupContent());
 
     const productsLink = document.getElementById('productsLink');
     if (productsLink) productsLink.addEventListener('click', (event) => {
@@ -210,6 +210,7 @@ function setupEventListeners() {
 
 function loadProductContent() {
     const productsContainer = document.getElementById('productsContainer');
+    productsContainer.innerHTML = ` <h2 class="mb-4">Our Products</h2> `;
     productsContainer.innerHTML = products.map(product => `
         <div class="col-md-4 mb-3">
         <img src="./${product.image}" class="card-img-top img-fluid" alt="${product.name}">
@@ -229,17 +230,54 @@ function loadContent(page) {
     fetch(page)
         .then(response => response.text())
         .then(html => {
-            document.getElementById('dynamic-content').innerHTML = html;
+            document.getElementById('productsContainer').innerHTML = html;
             if(page === './login.html') {
                 setupLoginForm();
             }
         })
         .catch(error => {
             console.error('Error loading page:', error);
-            document.getElementById('dynamic-content').innerHTML = '<p>Error loading content.</p>';
+            document.getElementById('productsContainer').innerHTML = '<p>Error loading content.</p>';
         });
 }
-
+function loadLoginContent() {
+   
+    document.getElementById('productsContainer').innerHTML = `
+    <div id="content" class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </div>`;
+    setupLoginForm();
+       
+}
+function loadSignupContent() {
+   
+    document.getElementById('productsContainer').innerHTML = `
+    <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <div class="form-group">
+            <label for="newEmail">Email address:</label>
+            <input type="email" class="form-control" id="newEmail" required>
+        </div>
+        <div class="form-group">
+            <label for="newPwd">Password:</label>
+            <input type="password" class="form-control" id="newPwd" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+    </div>`;
+}
 function setupLoginForm() {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -257,7 +295,10 @@ function performLogin() {
     if (username === "user@gmail.com" && password === "password123") {
         setCookie("currentUser", username, 7);
         updateNavbar(username);
-        window.location.href = './index.html';
+        const productsContainer = document.getElementById('productsContainer');
+         productsContainer.innerHTML =  `  `;
+         loadProductContent();
+        // window.location.href = './index.html';
     } else {
         alert("Incorrect username or password!");
     }
@@ -425,8 +466,7 @@ function filterProductsByCategory(category) {
 
 function displayProducts(productsList) {
     const productsContainer = document.getElementById('productsContainer');
-    productsContainer.innerHTML = ``;
-    productsContainer.innerHTML = productsList.map(product => `
+    productsContainer.innerHTML =  `  `+ productsList.map(product => `
         <div class="col-md-4 mb-3">
             <div class="card">
             <img src="${product.image}" class="card-img-top img-fluid" alt="${product.name}">
@@ -435,7 +475,7 @@ function displayProducts(productsList) {
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
                     <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-                    <a class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
+                    <a  class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
                 </div>
             </div>
         </div>
