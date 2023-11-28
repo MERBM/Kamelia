@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Api.Data
 {
     public static class DataSeeder
     {
-    public static void SeedData(MyDBContext context)
+    public static void SeedData(MyDBContext context , IConfiguration configuration)
     {
          if (!context.Categories.Any())
         {
@@ -74,6 +76,27 @@ namespace Api.Data
             context.Products.AddRange(products);
             context.SaveChanges();
         }
+        var adminEmail = configuration["AdminUser:Username"];
+        var adminPassword = configuration["AdminUser:Password"];
+
+        if (!context.users.Any(u => u.Email == adminEmail))
+        {
+            var adminUser = new User
+            {
+                Username = "Admin",
+                Email = adminEmail,
+                PasswordHash = HashPassword(adminPassword), // Replace with a real hash function
+                // Set other required fields as necessary
+            };
+
+            context.users.Add(adminUser);
+            context.SaveChanges();
+        }
+    }
+    private static string HashPassword(string password)
+    {
+       var passwordHasher = new PasswordHasher<User>();
+        return passwordHasher.HashPassword(null, password);
     }
     }
 

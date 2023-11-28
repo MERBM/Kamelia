@@ -20,6 +20,7 @@ builder.Services.AddDbContext<MyDBContext>(options => options.UseSqlServer(confi
 builder.Services.AddScoped<CategoryService>(); 
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrderService>();
 
 var app = builder.Build();
 app.UseExceptionMiddleware();
@@ -40,6 +41,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<MyDBContext>();
-    DataSeeder.SeedData(dbContext);
+    var configurations = services.GetRequiredService<IConfiguration>();
+    DataSeeder.SeedData(dbContext,configurations);
 }
 app.Run();

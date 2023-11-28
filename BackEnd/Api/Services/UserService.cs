@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Services
 {
@@ -49,14 +50,16 @@ namespace Api.Services
 
     private string HashPassword(string password)
     {
+        var passwordHasher = new PasswordHasher<User>();
+        return passwordHasher.HashPassword(null, password);
         // Implement password hashing
-        return password; // Placeholder: replace with real hashing
+      
     }
 
     private bool VerifyPassword(string enteredPassword, string storedHash)
     {
-        // Implement password verification
-        return enteredPassword == storedHash; // Placeholder: replace with real verification
+        var passwordHasher = new PasswordHasher<User>();
+    return passwordHasher.VerifyHashedPassword(null, storedHash, enteredPassword) != PasswordVerificationResult.Failed;
     }
 }
 
