@@ -59,7 +59,8 @@ namespace Api.Services
     private bool VerifyPassword(string enteredPassword, string storedHash)
     {
         var passwordHasher = new PasswordHasher<User>();
-    return passwordHasher.VerifyHashedPassword(null, storedHash, enteredPassword) != PasswordVerificationResult.Failed;
+        var result = passwordHasher.VerifyHashedPassword(null, storedHash, enteredPassword);
+        return result == PasswordVerificationResult.Success;
     }
 }
 
