@@ -2,196 +2,42 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateCartCount();
     updateNavbarBasedOnLoginStatus();
+    updateCategories();
 });
 
-const products = [
-    // GEO COLLECTION
-    {
-        id: 1,
-        name: 'Geo Pattern Rug',
-        description: 'Geometrically inspired rug with modern patterns.',
-        price: 120.99,
-        category: 'GEO COLLECTION',
-        image: 'images/geo_pattern_rug.png'
-    },
-    // CLASSIC
-    {
-        id: 2,
-        name: 'Classic Oriental Rug',
-        description: 'Traditional oriental rug with timeless appeal.',
-        price: 200.50,
-        category: 'CLASSIC',
-        image: 'images/classic_oriental_rug.png'
-    },
-    // MODERN
-    {
-        id: 3,
-        name: 'Contemporary Art Rug',
-        description: 'A modern rug inspired by contemporary art.',
-        price: 180.75,
-        category: 'MODERN',
-        image: 'images/contemporary_art_rug.png'
-    },
-    // INDOOR-OUTDOOR
-    {
-        id: 4,
-        name: 'Versatile Indoor-Outdoor Rug',
-        description: 'Perfect for both indoor and outdoor settings.',
-        price: 150.00,
-        category: 'INDOOR-OUTDOOR',
-        image: 'images/indoor_outdoor_rug.png'
-    },
-    // KIDS RUGS
-    {
-        id: 5,
-        name: 'Colorful Kids Rug',
-        description: 'Bright and playful rug for children\'s rooms.',
-        price: 85.00,
-        category: 'KIDS RUGS',
-        image: 'images/colorful_kids_rug.png'
-    },
-    // HAND TUFT
-    {
-        id: 6,
-        name: 'Hand Tufted Wool Rug',
-        description: 'Handcrafted tufted rug made from the finest wool.',
-        price: 220.00,
-        category: 'HAND TUFT',
-        image: 'images/hand_tufted_wool_rug.png'
-    },
-    // SHAG
-    {
-        id: 7,
-        name: 'Luxury Shag Rug',
-        description: 'Ultra-soft shag rug for a cozy feel.',
-        price: 250.00,
-        category: 'SHAG',
-        image: 'images/luxury_shag_rug.png'
-    },
-    // GOBELIN
-    {
-        id: 8,
-        name: 'Gobelin Style Rug',
-        description: 'Elegant gobelin rug with intricate designs.',
-        price: 300.00,
-        category: 'GOBELIN',
-        image: 'images/gobelin_style_rug.png'
-    },
-    // BATHROOM MAT
-    {
-        id: 9,
-        name: 'Soft Bathroom Mat',
-        description: 'Comfortable and absorbent mat for bathrooms.',
-        price: 50.00,
-        category: 'BATHROOM MAT',
-        image: 'images/soft_bathroom_mat.png'
-    },
-    // ... continue adding products for each category ...
-    // Continuing from the previous products...
+var products;
 
-    // GEO COLLECTION
-    {
-        id: 10,
-        name: 'Geometric Abstract Rug',
-        description: 'A rug featuring bold geometric patterns for a modern look.',
-        price: 210.00,
-        category: 'GEO COLLECTION',
-        image: 'images/geometric_abstract_rug.png'
-    },
-    {
-        id: 11,
-        name: 'Minimalist Geo Rug',
-        description: 'Sleek and minimalist design with subtle geometric shapes.',
-        price: 190.00,
-        category: 'GEO COLLECTION',
-        image: 'images/minimalist_geo_rug.png'
-    },
+var Categories;
 
-    // CLASSIC
-    {
-        id: 12,
-        name: 'Vintage Classic Rug',
-        description: 'A classic rug with a vintage feel, perfect for elegant spaces.',
-        price: 250.00,
-        category: 'CLASSIC',
-        image: 'images/vintage_classic_rug.png'
-    },
-    {
-        id: 13,
-        name: 'Royal Classic Carpet',
-        description: 'A carpet that exudes classic elegance and royal charm.',
-        price: 300.00,
-        category: 'CLASSIC',
-        image: 'images/royal_classic_carpet.png'
-    },
+function updateCategories() {
+    fetch('http://merbmd-001-site1.itempurl.com/api/Categories')
+    .then(async response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        this.Categories = await response.json();
+        return this.Categories;
+    })
+    .then(Categories => {
+        const categoryList = document.getElementById('categoryList');
+        categoryList.innerHTML = ''; // Clear existing list
 
-    // MODERN
-    {
-        id: 14,
-        name: 'Urban Chic Rug',
-        description: 'A rug that embodies the essence of modern urban design.',
-        price: 220.00,
-        category: 'MODERN',
-        image: 'images/urban_chic_rug.png'
-    },
-    {
-        id: 15,
-        name: 'Modern Artistic Rug',
-        description: 'A creatively designed rug, perfect for modern art lovers.',
-        price: 245.00,
-        category: 'MODERN',
-        image: 'images/modern_artistic_rug.png'
-    },
+        Categories.forEach(category => {
+            const listItem = document.createElement('li');
+            listItem.className = 'nav-item';
+            const link = document.createElement('a');
+            link.className = 'nav-link';
+            link.href = '#';
+            link.textContent = `${category.name} (${category.count})`; // Display name and count
+            link.onclick = function() { filterProductsByCategory(category.categoryID); }; // Use 'categoryID' for filtering
 
-    // INDOOR-OUTDOOR
-    {
-        id: 16,
-        name: 'Versatile All-Weather Rug',
-        description: 'Designed for both indoor and outdoor use, resilient in all weather conditions.',
-        price: 180.00,
-        category: 'INDOOR-OUTDOOR',
-        image: 'images/all_weather_rug.png'
-    },
-    {
-        id: 17,
-        name: 'Patio-Friendly Rug',
-        description: 'A perfect addition to your patio, blending durability with style.',
-        price: 160.00,
-        category: 'INDOOR-OUTDOOR',
-        image: 'images/patio_friendly_rug.png'
-    },
-
-// ... continue in the same pattern for other categories ...
-
-    // MAC COLLECTION
-    {
-        id: 28,
-        name: 'Mac Collection Elegant Rug',
-        description: 'Part of the exclusive Mac Collection, offering sophistication and style.',
-        price: 345.00,
-        category: 'MAC COLLECTION',
-        image: 'images/mac_collection_elegant_rug.png'
-    },
-    // ROUND AREA RUG
-    {
-        id: 29,
-        name: 'Round Area Rug',
-        description: 'A beautifully designed round rug, perfect for any area.',
-        price: 180.00,
-        category: 'ROUND AREA RUG',
-        image: 'images/round_area_rug.png'
-    },
-    // GOBELIN TABLEAU
-    {
-        id: 30,
-        name: 'Gobelin Tableau Rug',
-        description: 'Artistic and ornate, a masterpiece for your floor.',
-        price: 375.00,
-        category: 'GOBELIN TABLEAU',
-        image: 'images/gobelin_tableau_rug.png'
-    }
-];
-
+            listItem.appendChild(link);
+            categoryList.appendChild(listItem);});
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
 
 function setupEventListeners() {
     const loginButton = document.getElementById('loginButton');
@@ -210,21 +56,43 @@ function setupEventListeners() {
 
 function loadProductContent() {
     const productsContainer = document.getElementById('productsContainer');
-    productsContainer.innerHTML = ` <h2 class="mb-4">Our Products</h2> `;
-    productsContainer.innerHTML = products.map(product => `
-        <div class="col-md-4 mb-3">
-        <img src="./${product.image}" class="card-img-top img-fluid" alt="${product.name}">
-        <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.description}</p>
-                    <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-                    <a  class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-    `).join('');
+    //take all width 100%
+    productsContainer.innerHTML = `<div style="text-align: center; width: 100%;" > <h2 class="mb-4">Our Products</h2> </div> <br />`;
+
+    fetch('http://merbmd-001-site1.itempurl.com/api/Products'/*, { mode: 'no-cors' }*/)
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            this.products = await response.json();
+            return this.products;
+        })
+        .then(products => {
+            if (products.length === 0) {
+                productsContainer.innerHTML += '<p>No products available.</p>';
+            } else {
+                const productHtml = products.map(product => `
+                    <div class="col-md-4 mb-3">
+                        <img src="./${product.imageURL}" class="card-img-top img-fluid" alt="${product.name}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <p class="card-text"><strong>Price:</strong> $${product.price}</p>
+                                <a class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                productsContainer.innerHTML += productHtml;
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            productsContainer.innerHTML += '<p>Error loading products.</p>';
+        });
 }
+
 
 function loadContent(page) {
     fetch(page)
@@ -460,7 +328,7 @@ function showDashboard() {
     // ... existing showDashboard functionality ...
 }
 function filterProductsByCategory(category) {
-    const filteredProducts = products.filter(product => product.category === category);
+    const filteredProducts = products.filter(product => product.categoryID === category);
     displayProducts(filteredProducts);
 }
 
@@ -469,7 +337,7 @@ function displayProducts(productsList) {
     productsContainer.innerHTML =  `  `+ productsList.map(product => `
         <div class="col-md-4 mb-3">
             <div class="card">
-            <img src="${product.image}" class="card-img-top img-fluid" alt="${product.name}">
+            <img src="${product.imageURL}" class="card-img-top img-fluid" alt="${product.name}">
 
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
