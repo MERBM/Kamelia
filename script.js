@@ -10,7 +10,7 @@ var products;
 var Categories;
 
 function updateCategories() {
-    fetch('http://merbmd-001-site1.itempurl.com/api/Categories')
+    fetch('https://merbmd-001-site1.itempurl.com/api/Categories')
     .then(async response => {
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
@@ -59,7 +59,7 @@ function loadProductContent() {
     //take all width 100%
     productsContainer.innerHTML = `<div style="text-align: center; width: 100%;" > <h2 class="mb-4">Our Products</h2> </div> <br />`;
 
-    fetch('http://merbmd-001-site1.itempurl.com/api/Products'/*, { mode: 'no-cors' }*/)
+    fetch('https://merbmd-001-site1.itempurl.com/api/Products'/*, { mode: 'no-cors' }*/)
         .then(async response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
