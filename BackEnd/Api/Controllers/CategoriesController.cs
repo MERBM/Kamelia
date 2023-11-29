@@ -21,7 +21,7 @@ public class CategoriesController : ControllerBase
 
     // Get all categories
     [HttpGet]
-    public ActionResult<IEnumerable<Category>> GetAll()
+    public ActionResult<IEnumerable<object>> GetAll()
     {
         return Ok(_categoryService.GetAllCategories());
     }

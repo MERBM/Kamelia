@@ -79,3 +79,8 @@ C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\Api.deps.json
 C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\Api.runtimeconfig.json
 C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\appsettings.Development.json
 C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\appsettings.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\publish\web.config
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\publish\Api.deps.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\publish\Api.runtimeconfig.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\publish\appsettings.Development.json
+C:\Users\pc\Desktop\kemo\BackEnd\api\bin\Debug\net7.0\publish\publish\appsettings.json

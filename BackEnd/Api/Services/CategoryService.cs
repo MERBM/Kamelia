@@ -16,9 +16,9 @@ namespace Api.Services
     }
 
     // Get all categories
-    public IEnumerable<Category> GetAllCategories()
+    public IEnumerable<object> GetAllCategories()
     {
-        return _context.Categories.ToList();
+        return _context.Categories.Select(c => new { c.CategoryID, c.Name , count= c.Products.Count() }).ToList();
     }
 
     // Get a category by ID
