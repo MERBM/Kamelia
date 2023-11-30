@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 const imageBaseUrl ='https://merbmd-001-site1.itempurl.com/';
 var products;
-
 var Categories;
 
 function updateCategories() {
@@ -92,7 +91,6 @@ function loadProductContent() {
             productsContainer.innerHTML += '<p>Error loading products.</p>';
         });
 }
-
 
 function loadContent(page) {
     fetch(page)
@@ -302,12 +300,11 @@ function checkout() {
         items: cart
     };
 
-    // Set the "ordered" cookie with the order details
-    setCookie('ordered', JSON.stringify(orderDetails), 7); // Storing the order for 7 days
+    
+
 
     // Clear the cart
     setCookie('cart', '', -1); // Clearing the cart cookie
-
     // Update UI
     updateCartCount();
     $('#cartModal').modal('hide'); // Hide the cart modal
