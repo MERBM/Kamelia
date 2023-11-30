@@ -57,7 +57,7 @@ function setupEventListeners() {
 function loadProductContent() {
     const productsContainer = document.getElementById('productsContainer');
     //take all width 100%
-    productsContainer.innerHTML = `<div style="text-align: center; width: 100%;" >  </div> <br />`;
+    productsContainer.innerHTML = ` `;
 
     fetch('https://merbmd-001-site1.itempurl.com/api/Products'/*, { mode: 'no-cors' }*/)
         .then(async response => {
