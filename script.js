@@ -60,7 +60,10 @@ function setupEventListeners() {
         loadProductContent();
     });
 }
-
+// function clearCart(){
+//     localStorage.removeItem('cart');
+//     updateCartCount();
+// }
 function loadMyOrdersContent() {
     const productsContainer = document.getElementById('productsContainer');
     //take all width 100%
