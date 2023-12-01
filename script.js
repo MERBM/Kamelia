@@ -465,11 +465,12 @@ function deleteOrder(userId, orderId) {
     fetch(BaseUrl+`api/Orders/delete/${userId}/${orderId}`, {
         method: 'DELETE',
     })
-    .then(response => {
+    .then( async response => {
         if (!response.ok) {
+           
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json();
+        return await response.json();
     })
     .then(data => {
         console.log(data.message);
@@ -480,7 +481,16 @@ function deleteOrder(userId, orderId) {
         // Handle the successful deletion here (e.g., update the UI or notify the user)
     })
     .catch(error => {
+        Toastify({
+            text: ` Order cannot be deleted. It may be older than 3 hours or does not exist. `,
+            duration: 3000,
+            close: true,
+            gravity: "top",  // `top` or `bottom`
+            position: "right",  // `left`, `center` or `right`
+            backgroundColor: "linear-gradient(to right,red, gray)",
+        }).showToast();
         console.error('Error deleting the order:', error);
+        
         // Handle the error here (e.g., display an error message to the user)
     });
 }
