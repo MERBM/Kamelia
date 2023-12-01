@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbarBasedOnLoginStatus();
     updateCategories();
 });
-//const BaseUrl = 'https://merbmd-001-site1.itempurl.com/';
-const BaseUrl = 'https://localhost:7200/';
+const BaseUrl = 'https://merbmd-001-site1.itempurl.com/';
+//const BaseUrl = 'https://localhost:7200/';
 
 var products;
 var Categories;
