@@ -60,10 +60,12 @@ function setupEventListeners() {
         loadProductContent();
     });
 }
-// function clearCart(){
-//     localStorage.removeItem('cart');
-//     updateCartCount();
-// }
+function clearCart(){
+    deleteCookie('cart');
+    let cartItemsContainer = document.getElementById('cartItems');
+    cartItemsContainer.innerHTML = ''; // Clear existing items
+    updateCartCount();
+}
 function loadMyOrdersContent() {
     const productsContainer = document.getElementById('productsContainer');
     //take all width 100%
