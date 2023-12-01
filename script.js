@@ -76,7 +76,7 @@ function loadMyOrdersContent() {
         })
         .then(OrderItems => {
             if (OrderItems.length === 0) {
-                productsContainer.innerHTML += '<p>No products available.</p>';
+                productsContainer.innerHTML += '<p>No Orders available.</p>';
             } else {
                 const OrdersHtml =  OrderItems.map(order => `
                 <div class="card mb-3 id="orderCard-${order.orderID}"">
