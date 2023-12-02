@@ -416,6 +416,11 @@ function checkout() {
         alert("Your cart is empty.");
         return;
     }
+    let user = getCookie('currentUser');
+    if (!user) {
+        alert("Please login first.");
+        return;
+    }
 
     
     let userAddress = document.getElementById('userAddress').value;
@@ -499,8 +504,6 @@ function deleteOrder(userId, orderId) {
         // Handle the error here (e.g., display an error message to the user)
     });
 }
-
-
 
 function getOrderedDetails() {
     let orderedCookie = getCookie('ordered');
