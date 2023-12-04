@@ -84,7 +84,7 @@ function loadMyOrdersContent() {
                 productsContainer.innerHTML += '<p>No Orders available.</p>';
             } else {
                 const OrdersHtml =  OrderItems.map(order => `
-                <div class="card mb-3 id="orderCard-${order.orderID}">
+                <div class="card mb-3" id="orderCard-${order.orderID}">
                     <div class="card-header">
                         Order #${order.orderID} - <small class="text-muted">Placed by: ${order.user.username}</small>
                     </div>
